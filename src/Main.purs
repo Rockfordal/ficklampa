@@ -91,12 +91,9 @@ data Query a
   | MakeRequest String a
 
 -- | The effects used in the app.
---type WsEffects eff = HalogenEffects (avar :: AVAR | eff)
 type AppEffects eff = HalogenEffects (ajax :: AJAX | eff)
 --type WsEffects eff = HalogenEffects ()
 --type HalogenEffects eff = (avar :: AVAR, err :: EXCEPTION, dom :: DOM | eff)
-
--- | The effect type for WS requests made with WS.
 --foreign import data AJAX :: !
 
 
@@ -188,84 +185,32 @@ ui = component render eval
 --   let response = "ok" :: String
 --   return response
 
---type URL = String 
+-- return if res.status == StatusCode 201
+--         then Right res.response
+--         else Error.throwJS res.status
+
 apiUrl :: URL
 apiUrl = "http://94.245.59.238:3000/"
 
 requestURL :: URL -> URL
 requestURL url = apiUrl ++ url
 
--- data Endpoint a b c = Endpoint {
---   method :: Method,
---   serverUrl :: String,
---   mkClientUrl :: a -> URL
--- }
-
--- parseOrThrow :: forall eff a. (DecodeJson a) => String -> Aff eff a
--- parseOrThrow a = 
---   either throwStr (\json -> either throwStr return $ decodeJson json) (jsonParser a)
---     where throwStr str = throwError $ error str
-
--- execEndpoint :: forall eff a b c. (EncodeJson b, DecodeJson b, EncodeJson c, DecodeJson c) =>
---                   Endpoint a b c -> a -> b -> Aff (ajax :: AJAX | eff) c
-
--- execEndpoint (Endpoint {method: method, mkClientUrl: f}) a b = 
---   affjax opts >>= _.response >>> parseOrThrow
---     where opts = { method: method
---                  , url: f a
---                  , headers: [ContentType applicationJSON]
---                  , content: (Just $ printJson $ encodeJson b) :: Maybe String
---                  , username: Nothing
---                  , password: Nothing}
-
--- data Post = Post { title :: String
---                  , body  :: String
---                  }
-
--- getPhotobooths :: forall a. Endpoint a Unit (Array Post)
--- getPhotobooths = Endpoint { method: GET, serverUrl: "/posts"
---                           , mkClientUrl: const "/posts"} 
-
--- headers :: [RequestHeader]
--- headers =
--- 	[ RequestHeader "Authorization" "bla"
--- 	, Accept Network.HTTP.MimeType.Common.applicationJSON
--- 	, ContentType Network.HTTP.MimeType.Common.applicationJSON
--- 	]
-
--- getWithHeaders :: forall e a b. (Respondable b) => [RequestHeader] -> URL -> Affjax e b
--- getWithHeaders headers url =
--- 	affjax $ defaultRequest
--- 		{ method = GET
--- 		, url = url
--- 		, headers = headers
--- 		}
-
 defRq :: AffjaxRequest Unit
 defRq = defaultRequest { headers = [ContentType applicationJSON, Accept applicationJSON] }
 
-    -- return if res.status == StatusCode 201
-    --         then Right res.response
-    --         else Error.throwJS res.status
-
 body :: String
 body = "hej"
---    body = show $ LoginRequestBody { user: username, pass: password }
+--   = show $ LoginRequestBody { user: username, pass: password }
 
--- | Post some PureScript code to the trypurescript API and fetch the JS result.
 fetchJS :: forall eff. String -> Aff (ajax :: AJAX | eff) String
 fetchJS payload = do
   --result <- post (requestURL "posts") payload
-  --result <- getPhotobooths
-  --result <- get (requestURL "posts")
-
   result <- affjax defRq
     { method = GET
     , url = requestURL "posts"
     --, content = Just body
     }
 
-  --getChannelsRequest = getWithHeaders headers $ requestURL "posts"
   let response = result.response
   return response
   --return case readProp "js" response <|> readProp "error" response of
