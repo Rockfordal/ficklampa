@@ -24,16 +24,16 @@ import Halogen.Themes.Bootstrap3 as B
 
 import Control.Monad.Error.Class (throwError)
 import Control.Monad.Eff.Exception (error, message)
-import Network.HTTP.Affjax -- (AJAX(), URL(), affjax, get, post, put)
+import Network.HTTP.Affjax (AJAX(), URL(), AffjaxRequest(), defaultRequest, affjax, get, post, put)
 import Network.HTTP.Affjax.Request
 import Network.HTTP.Affjax.Response
 import Network.HTTP.RequestHeader (RequestHeader(..))
 import Network.HTTP.Method -- (Method(..))
 import Network.HTTP.MimeType.Common (applicationJSON)
-import Data.Argonaut.Parser (jsonParser)
-import Data.Argonaut.Printer (printJson)
-import Data.Argonaut.Decode (decodeJson, DecodeJson)
-import Data.Argonaut.Encode (EncodeJson, encodeJson)
+-- import Data.Argonaut.Parser (jsonParser)
+-- import Data.Argonaut.Printer (printJson)
+-- import Data.Argonaut.Decode (decodeJson, DecodeJson)
+-- import Data.Argonaut.Encode (EncodeJson, encodeJson)
 import Data.Either (Either(..), either)
 import Data.JSON
 import Data.Tuple

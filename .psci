@@ -118,6 +118,8 @@
 :m bower_components/purescript-functions/src/Data/Function.purs
 :m bower_components/purescript-functors/src/Data/Functor/Product.purs
 :m bower_components/purescript-generics/src/Data/Generic.purs
+:m bower_components/purescript-globals/src/Global.purs
+:m bower_components/purescript-globals/src/Global/Unsafe.purs
 :m bower_components/purescript-halogen-bootstrap/src/Halogen/Themes/Bootstrap3.purs
 :m bower_components/purescript-halogen-bootstrap/src/Halogen/Themes/Bootstrap3/InputGroup.purs
 :m bower_components/purescript-halogen/src/Data/ExistsR.purs
@@ -209,6 +211,15 @@
 :m bower_components/purescript-profunctor/src/Data/Profunctor/Strong.purs
 :m bower_components/purescript-refs/src/Control/Monad/Eff/Ref.purs
 :m bower_components/purescript-refs/src/Control/Monad/Eff/Ref/Unsafe.purs
+:m bower_components/purescript-routing/src/Routing.purs
+:m bower_components/purescript-routing/src/Routing/Hash.purs
+:m bower_components/purescript-routing/src/Routing/Hash/Aff.purs
+:m bower_components/purescript-routing/src/Routing/Match.purs
+:m bower_components/purescript-routing/src/Routing/Match/Class.purs
+:m bower_components/purescript-routing/src/Routing/Match/Error.purs
+:m bower_components/purescript-routing/src/Routing/Parser.purs
+:m bower_components/purescript-routing/src/Routing/Types.purs
+:m bower_components/purescript-semirings/src/Data/Semiring/Free.purs
 :m bower_components/purescript-sets/src/Data/Set.purs
 :m bower_components/purescript-st/src/Control/Monad/ST.purs
 :m bower_components/purescript-stalling-coroutines/src/Control/Coroutine/Stalling.purs
@@ -251,6 +262,8 @@
 :m bower_components/purescript-tuples/src/Data/Tuple/Nested.purs
 :m bower_components/purescript-unfoldable/src/Data/Unfoldable.purs
 :m bower_components/purescript-unsafe-coerce/src/Unsafe/Coerce.purs
+:m bower_components/purescript-validation/src/Data/Validation.purs
+:m bower_components/purescript-validation/src/Data/Validation/Semiring.purs
 :m bower_components/purescript-void/src/Data/Void.purs
 :f src/WebSocket.js
 :f bower_components/purescript-aff/src/Control/Monad/Aff.js
@@ -294,6 +307,8 @@
 :f bower_components/purescript-foreign/src/Data/Foreign/Keys.js
 :f bower_components/purescript-functions/src/Data/Function.js
 :f bower_components/purescript-generics/src/Data/Generic.js
+:f bower_components/purescript-globals/src/Global.js
+:f bower_components/purescript-globals/src/Global/Unsafe.js
 :f bower_components/purescript-halogen/src/Halogen/HTML/Events/Handler.js
 :f bower_components/purescript-halogen/src/Halogen/Internal/VirtualDOM.js
 :f bower_components/purescript-integers/src/Data/Int.js
@@ -310,6 +325,8 @@
 :f bower_components/purescript-nullable/src/Data/Nullable.js
 :f bower_components/purescript-prelude/src/Prelude.js
 :f bower_components/purescript-refs/src/Control/Monad/Eff/Ref.js
+:f bower_components/purescript-routing/src/Routing.js
+:f bower_components/purescript-routing/src/Routing/Hash.js
 :f bower_components/purescript-st/src/Control/Monad/ST.js
 :f bower_components/purescript-strings/src/Data/Char.js
 :f bower_components/purescript-strings/src/Data/String.js
