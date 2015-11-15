@@ -1,0 +1,12 @@
+{
+  "name": "ajax",
+  "private": true,
+  "dependencies": {
+    "purescript-affjax": "^0.8.0",
+    "purescript-halogen": "*",
+    "purescript-halogen-bootstrap": "~0.4.0"
+  },
+  "devDependencies": {
+    "purescript-stalling-coroutines": "~0.1.0"
+  }
+}
