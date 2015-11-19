@@ -60,16 +60,15 @@ type State = { busy :: Boolean,
                payload :: String,
                result :: Maybe String
                         }
+userName :: String
+userName = "Jack"
 
 initialState :: State
 initialState = { busy: false,
-                 user: "Jack",
-                 payload: "",
---                 payload: (makePayload "Jack"),
+                 user: userName,
+                 payload: (makePayload userName),
                  result: Nothing
 }
-
-makePayload initialState.user
 
 data Slot = Slot
 
@@ -118,40 +117,43 @@ ui = component render eval
   render :: State -> ComponentHTML Input
   render st =
     H.div_ $
-        [ H.h2_
-          [ H.text "Halogen Ajax" ]
+        [
+          H.h2_
+            [H.text "Halogen Ajax" ]
         , H.input 
-            [ P.id_ "msgdata"
-            , P.classes [ B.formControl ]
+            [P.id_ "msgdata"
+            ,P.classes [ B.formControl ]
             --, P.inputType inpType
-            , P.value st.user
-            , E.onValueInput (E.input SetUser)
+            ,P.value st.user
+            ,E.onValueInput (E.input SetUser)
             ]
         , H.p_
-            [ H.text st.user ]
+             [H.text st.user ]
             , H.p_
-            [ H.textarea
-                [ P.value st.payload
-                --, E.onValueInput (E.input SetPayload)
-                ]]
-        , H.p_
-            [ H.button
-                [
-                  P.classes [m_waveseffect,m_waveslight,m_btn]
-                --, P.disabled st.busy
-                , E.onClick (E.input_ (MakeRequest st.payload))
+              [H.textarea
+                [P.value st.payload
+              --, E.onValueInput (E.input SetPayload)
                 ]
-                [ H.text "Skicka" ]
-            ]
+              ]
         , H.p_
-            [ H.text (if st.busy then "Working..." else "") ]
+          [ H.button
+            [P.classes [m_waveseffect,m_waveslight,m_btn]
+              --, P.disabled st.busy
+            ,E.onClick (E.input_ (MakeRequest st.payload))
+            ]
+            [H.text "Skicka" ]
+          ]
+        , H.p_
+          [H.text
+            (if st.busy then "Working..." else "")]
         ]
       ++ flip foldMap st.result \js ->
-          [ H.div_
-              [ H.h3_
-                  [ H.text "Svar:" ]
-              , H.pre_
-                  [ H.code_ [ H.text js ] ]]]
+        [ H.div_
+          [H.h3_
+            [H.text "Svar:" ]
+            ,H.pre_
+              [H.code_
+                [H.text js]]]]
 
   --eval :: Natural Query (ComponentDSL State Query (Aff (AppEffects eff)))
   --eval :: Natural Query (ComponentDSL State Input g)
