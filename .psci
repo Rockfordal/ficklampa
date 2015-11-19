@@ -1,5 +1,10 @@
+:m src/BigPrelude.purs
+:m src/Components/Courses.purs
+:m src/Components/Profile.purs
+:m src/Components/Sessions.purs
+:m src/Components/WebSocket.purs
 :m src/Main.purs
-:m src/WebSocket.purs
+:m src/Router.purs
 :m bower_components/purescript-aff-coroutines/src/Control/Coroutine/Aff.purs
 :m bower_components/purescript-aff/src/Control/Monad/Aff.purs
 :m bower_components/purescript-aff/src/Control/Monad/Aff/AVar.purs
@@ -265,7 +270,7 @@
 :m bower_components/purescript-validation/src/Data/Validation.purs
 :m bower_components/purescript-validation/src/Data/Validation/Semiring.purs
 :m bower_components/purescript-void/src/Data/Void.purs
-:f src/WebSocket.js
+:f src/Components/WebSocket.js
 :f bower_components/purescript-aff/src/Control/Monad/Aff.js
 :f bower_components/purescript-aff/src/Control/Monad/Aff/AVar.js
 :f bower_components/purescript-aff/src/Control/Monad/Aff/Unsafe.js
