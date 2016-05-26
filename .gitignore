@@ -1,5 +1,9 @@
 /dist/example.js
 /output
 /bower_components
+/node_modules
+/.psci_modules
 /assets/app.js
 /.browserify-cache.json
+/.psci
+
