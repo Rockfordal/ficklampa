@@ -6,8 +6,9 @@ import Data.Generic
 import Control.Alt ((<|>))
 import Control.Monad.Aff (Aff(), runAff)
 import Control.Monad.Eff (Eff())
-import Control.Monad.Eff.Exception (throwException)
 import Control.Monad.Free (liftFI)
+import Control.Monad.Error.Class (throwError)
+import Control.Monad.Eff.Exception (error, message, throwException)
 
 import Data.Either (Either(..))
 import Data.Foldable (foldMap)
@@ -22,8 +23,6 @@ import qualified Halogen.HTML.Events.Indexed as E
 import qualified Halogen.HTML.Properties.Indexed as P
 import Halogen.Themes.Bootstrap3 as B
 
-import Control.Monad.Error.Class (throwError)
-import Control.Monad.Eff.Exception (error, message)
 import Network.HTTP.Affjax (AJAX(), URL(), AffjaxRequest(), defaultRequest, affjax, get, post, put)
 import Network.HTTP.Affjax.Request
 import Network.HTTP.Affjax.Response
@@ -98,8 +97,6 @@ defRq = defaultRequest { headers = [ContentType applicationJSON, Accept applicat
 body :: String
 body = "hej"
 
---   = show $ LoginRequestBody { user: username, pass: password }
-
 -- -- | The effects used in the app.
 -- type AppEffects eff = HalogenEffects (ajax :: AJAX | eff)
 -- --type WsEffects eff = HalogenEffects ()
@@ -113,7 +110,6 @@ ui :: forall g. (Functor g) => Component State Input g
 ui = component render eval
   where
 
---  render :: State -> ComponentHTML Query
   render :: State -> ComponentHTML Input
   render st =
     H.div_ $
@@ -158,7 +154,6 @@ ui = component render eval
   --eval :: Natural Query (ComponentDSL State Query (Aff (AppEffects eff)))
   --eval :: Natural Query (ComponentDSL State Input g)
   eval :: Eval Input State Input g
-  --eval :: _ _ State Input g
   --eval :: _ _ _ _ g
   --eval (SetPayload payload next) = modify (_ { payload = payload, result = Nothing :: Maybe String }) $> next
 
