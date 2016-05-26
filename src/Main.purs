@@ -3,10 +3,10 @@ module Main where
 import BigPrelude
 
 import Control.Monad.Aff (runAff, forkAff)
+import Control.Monad.Eff.Exception (throwException)
 
 import Halogen
 import Halogen.Util (appendToBody)
-import Control.Monad.Eff.Exception (throwException)
 
 import qualified Router as R
 
